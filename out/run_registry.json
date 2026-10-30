@@ -1,0 +1,42 @@
+{
+  "project_version": "3.0.0",
+  "run_id": "ultra-seed37-20261030",
+  "seed": 37,
+  "scene_config": {
+    "path": "configs/ultra.json",
+    "sha256": "24421c1c964b78e11d22e1f8804334cb03dd2f07013739bbb156a9dd817a6984"
+  },
+  "shape_model": {
+    "path": "models/shape_mlp_advanced.joblib",
+    "sha256": "254c8c6a7c47c4b0633ebc9c590e8e8e1ebf52e40c39ef978949a95cc47c4ccd",
+    "origin": "Advanced v2 artifact"
+  },
+  "grasp_model": {
+    "path": "out/experiments/models/grasp_success_hgb.joblib",
+    "sha256": "391d31e59b5566a2f6eb996447223bf001faf14a3a74a8225603dc47ed4f9b35",
+    "training_rows": 12000,
+    "train_rows": 9600,
+    "held_out_rows": 2400
+  },
+  "novelty_model": {
+    "path": "out/experiments/models/geometry_novelty.joblib",
+    "sha256": "0e8b70aa8affa776ca25f075058c49683a15c8069436838109915b32106f61fe",
+    "known_shapes": [
+      "circle",
+      "square",
+      "triangle"
+    ]
+  },
+  "results": {
+    "object_level": "out/experiments/tables/object_level_results.csv",
+    "abcd_summary": "out/experiments/tables/abcd_summary.csv",
+    "ablation": "out/experiments/tables/ablation_summary.csv"
+  },
+  "genesis_qualification": {
+    "path": "out/genesis/qualification.json",
+    "qualified": false,
+    "reason": "torch/genesis unavailable in managed package feed"
+  },
+  "benchmark_label": "controlled stochastic contact-outcome benchmark; not Genesis physics",
+  "source_artifact": "AI_Shape_Sorting_Robot_Arm_Advanced_v2.zip"
+}

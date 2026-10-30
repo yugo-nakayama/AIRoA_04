@@ -1,0 +1,6 @@
+# Target environment for the Genesis qualification gate.
+# These are intentionally exact so scene/model/result provenance is reproducible.
+# The packaged run could not install them in the managed container; see
+# out/genesis/install_attempt.txt and out/genesis/qualification.json.
+torch==2.7.1
+genesis-world==0.3.3

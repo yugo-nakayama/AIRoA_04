@@ -1,0 +1,79 @@
+{
+  "generated_utc": "2026-10-30T00:56:38Z",
+  "run_id": "ultra-seed37-20261030",
+  "benchmark_type": "controlled stochastic contact-outcome model; not Genesis physics",
+  "files": {
+    "environment.json": {
+      "sha256": "93c92de35018c40be0cbbb9015ac6032591947c38ffb41c6261dfc897cf6f8ca",
+      "bytes": 2880
+    },
+    "figures/abcd_comparison.png": {
+      "sha256": "bc67a7df3e8a1bf0a390c84bed225a0c1e0d06335827371952fda16a801c6c7e",
+      "bytes": 382177
+    },
+    "figures/ablation_open_set.png": {
+      "sha256": "68f20ca869fd1fced3067f409f774cd28520522c598cf35fcfe66711deb7a3e8",
+      "bytes": 91953
+    },
+    "figures/architecture.png": {
+      "sha256": "b40accaf09426ff1908441bd911ccaa3df331065641382f58d7080cf38c66ff5",
+      "bytes": 95306
+    },
+    "figures/failure_examples.png": {
+      "sha256": "a5710c974cb653ce49f0d6ee53a1e0009bd70c8d01ea1a05d57b63b58d274557",
+      "bytes": 112788
+    },
+    "figures/known_aggregate.png": {
+      "sha256": "95ce0fbf3c686b4b43e9a906802137977196c5033c07d904acea61b7b6a66205",
+      "bytes": 75198
+    },
+    "figures/open_set.png": {
+      "sha256": "ab5b7885c6fca97ce22eea4b5181cc9287bf8fff5396cb585499da3cc8bbc712",
+      "bytes": 64161
+    },
+    "models/geometry_novelty.joblib": {
+      "sha256": "0e8b70aa8affa776ca25f075058c49683a15c8069436838109915b32106f61fe",
+      "bytes": 30055
+    },
+    "models/grasp_success_hgb.joblib": {
+      "sha256": "391d31e59b5566a2f6eb996447223bf001faf14a3a74a8225603dc47ed4f9b35",
+      "bytes": 522342
+    },
+    "tables/abcd_summary.csv": {
+      "sha256": "e3a62fd0a514c828b80b88fbbd9a65fa4de0529c2be0733e19112e211f3a503a",
+      "bytes": 5955
+    },
+    "tables/ablation_object_results.csv": {
+      "sha256": "333b8fdc27e18bb01605c4c1d8d1f4f92d54ae5eba65e9f2520e1e01e85cc13c",
+      "bytes": 373729
+    },
+    "tables/ablation_summary.csv": {
+      "sha256": "d4008dbb784407de865284cc700fa63cee6af12513635e2180d756b69b914ca3",
+      "bytes": 2761
+    },
+    "tables/failure_taxonomy.csv": {
+      "sha256": "d24e6b0c8299f2764b56903823195135664fbe217c426c7ce3126270b4f2df3e",
+      "bytes": 2578
+    },
+    "tables/object_level_results.csv": {
+      "sha256": "0f0b0134a823ba9d48a2e4be4358de6577f1f7172bb6710af4917d82a43b874b",
+      "bytes": 1105385
+    },
+    "tables/paired_differences.csv": {
+      "sha256": "3701b8b1a9626b56ebd2540401327273e53c2e74ecf5c7b9c86267a759e8cecf",
+      "bytes": 1252
+    },
+    "videos/adaptive_benchmark_replay.mp4": {
+      "sha256": "915a1d3ea746c70e8cfb9a9e6a192eb7446a68691af0c194729d9f2c13c37e0c",
+      "bytes": 14635460
+    },
+    "videos/adaptive_benchmark_replay_h264.mp4": {
+      "sha256": "f6c03207725d7fe89ba2278e0cd7ed6775ff15fd920dc842f3a5d5b9dac96169",
+      "bytes": 1422010
+    },
+    "videos/adaptive_benchmark_replay_preview.png": {
+      "sha256": "1635f36e73c1d49b1f88df7ffe6ba2d492be08874aa2209eac5e801e84f012ff",
+      "bytes": 177732
+    }
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "truth": [
+    {
+      "label": "circle",
+      "center_uv": [
+        225,
+        190
+      ],
+      "height_m": 0.038
+    },
+    {
+      "label": "square",
+      "center_uv": [
+        330,
+        280
+      ],
+      "height_m": 0.044
+    },
+    {
+      "label": "triangle",
+      "center_uv": [
+        430,
+        190
+      ],
+      "height_m": 0.041
+    }
+  ],
+  "detections": [
+    {
+      "id": 0,
+      "label": "triangle",
+      "confidence": 0.99993,
+      "margin": 0.99987,
+      "entropy": 0.00065,
+      "uv": [
+        422.235,
+        191.917
+      ],
+      "xyz_m": [
+        0.66762,
+        -0.25009,
+        0.04097
+      ],
+      "yaw_rad": -3.07647,
+      "height_m": 0.04097,
+      "area_px": 1753,
+      "depth_mad_m": 0.000472,
+      "touching_border": false,
+      "geometry": {
+        "circularity": 0.556459,
+        "solidity": 0.959977,
+        "aspect": 0.991211,
+        "vertices_norm": 0.375,
+        "edge_damage": 0.040023
+      }
+    },
+    {
+      "id": 1,
+      "label": "circle",
+      "confidence": 0.99981,
+      "margin": 0.99962,
+      "entropy": 0.00168,
+      "uv": [
+        227.723,
+        191.157
+      ],
+      "xyz_m": [
+        0.66976,
+        0.22626,
+        0.03801
+      ],
+      "yaw_rad": -1.5708,
+      "height_m": 0.03801,
+      "area_px": 1465,
+      "depth_mad_m": 0.000471,
+      "touching_border": false,
+      "geometry": {
+        "circularity": 0.891093,
+        "solidity": 0.982849,
+        "aspect": 0.847826,
+        "vertices_norm": 0.875,
+        "edge_damage": 0.017151
+      }
+    },
+    {
+      "id": 2,
+      "label": "square",
+      "confidence": 0.99903,
+      "margin": 0.99848,
+      "entropy": 0.00764,
+      "uv": [
+        330.225,
+        281.596
+      ],
+      "xyz_m": [
+        0.44849,
+        -0.02495,
+        0.04397
+      ],
+      "yaw_rad": -0.04542,
+      "height_m": 0.04397,
+      "area_px": 2056,
+      "depth_mad_m": 0.000477,
+      "touching_border": false,
+      "geometry": {
+        "circularity": 0.739332,
+        "solidity": 0.974492,
+        "aspect": 0.790855,
+        "vertices_norm": 0.5,
+        "edge_damage": 0.025508
+      }
+    }
+  ],
+  "selected_id": 2,
+  "detected_labels": [
+    "circle",
+    "square",
+    "triangle"
+  ],
+  "pass": true
+}

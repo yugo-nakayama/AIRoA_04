@@ -1,0 +1,12 @@
+{
+  "qualified": true,
+  "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+  "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+  "checks": {
+    "imports": true,
+    "rigid_body_finite": true,
+    "franka_ik_finite": true
+  },
+  "torch_version": "2.11.0+cu128",
+  "genesis_version": "1.4.5"
+}

@@ -1,0 +1,13 @@
+{
+  "objects_attempted": 3,
+  "objects_succeeded": 2,
+  "success_rate": 0.6666666666666666,
+  "classification_accuracy": 1.0,
+  "mean_attempts": 1.0,
+  "failure_distribution": {
+    "slip": 1
+  },
+  "genesis_executed": true,
+  "seed": 37,
+  "total_expected_objects": 12
+}

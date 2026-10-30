@@ -1,0 +1,143 @@
+{
+  "python": "3.12.15 (main, Oct 25 2026, 23:53:29) [GCC 13.2.0]",
+  "platform": "Linux-6.1.158.2-microsoft-standard-x86_64-with-glibc2.38",
+  "numpy": "1.26.4",
+  "pandas": "2.2.2",
+  "opencv": "4.11.0",
+  "sklearn": "1.5.1",
+  "seed": 37,
+  "training_rows": 12000,
+  "objects_per_condition": 200,
+  "evaluation_conditions": [
+    {
+      "name": "nominal",
+      "pos_mm": 2,
+      "rot_deg": 3,
+      "depth_mm": 0.8,
+      "friction": 0.65,
+      "spacing_mm": 110,
+      "shapes": [
+        "circle",
+        "square",
+        "triangle"
+      ],
+      "split": "eval"
+    },
+    {
+      "name": "position_shift",
+      "pos_mm": 12,
+      "rot_deg": 5,
+      "depth_mm": 1.5,
+      "friction": 0.65,
+      "spacing_mm": 90,
+      "shapes": [
+        "circle",
+        "square",
+        "triangle"
+      ],
+      "split": "eval"
+    },
+    {
+      "name": "rotation_shift",
+      "pos_mm": 5,
+      "rot_deg": 22,
+      "depth_mm": 1.5,
+      "friction": 0.65,
+      "spacing_mm": 90,
+      "shapes": [
+        "circle",
+        "square",
+        "triangle"
+      ],
+      "split": "eval"
+    },
+    {
+      "name": "depth_noise",
+      "pos_mm": 5,
+      "rot_deg": 8,
+      "depth_mm": 7.0,
+      "friction": 0.65,
+      "spacing_mm": 90,
+      "shapes": [
+        "circle",
+        "square",
+        "triangle"
+      ],
+      "split": "eval"
+    },
+    {
+      "name": "low_friction",
+      "pos_mm": 5,
+      "rot_deg": 8,
+      "depth_mm": 2.0,
+      "friction": 0.28,
+      "spacing_mm": 90,
+      "shapes": [
+        "circle",
+        "square",
+        "triangle"
+      ],
+      "split": "unseen"
+    },
+    {
+      "name": "crowded",
+      "pos_mm": 7,
+      "rot_deg": 12,
+      "depth_mm": 3.0,
+      "friction": 0.55,
+      "spacing_mm": 45,
+      "shapes": [
+        "circle",
+        "square",
+        "triangle"
+      ],
+      "split": "unseen"
+    },
+    {
+      "name": "combined_unseen",
+      "pos_mm": 14,
+      "rot_deg": 28,
+      "depth_mm": 8.0,
+      "friction": 0.25,
+      "spacing_mm": 42,
+      "shapes": [
+        "circle",
+        "square",
+        "triangle"
+      ],
+      "split": "unseen"
+    },
+    {
+      "name": "open_set",
+      "pos_mm": 7,
+      "rot_deg": 14,
+      "depth_mm": 4.0,
+      "friction": 0.5,
+      "spacing_mm": 65,
+      "shapes": [
+        "circle",
+        "square",
+        "triangle",
+        "star",
+        "pentagon",
+        "crescent",
+        "damaged"
+      ],
+      "split": "unseen"
+    }
+  ],
+  "training_domain": {
+    "position_mm": "Uniform[1,8]",
+    "rotation_deg": "Uniform[0,12]",
+    "depth_noise_mm": "Uniform[0.5,3.5]",
+    "friction": "Uniform[0.45,0.85]",
+    "spacing_mm": "Uniform[70,130]",
+    "shapes": [
+      "circle",
+      "square",
+      "triangle"
+    ]
+  },
+  "benchmark_type": "controlled stochastic contact-outcome model; not Genesis physics",
+  "elapsed_s": 65.16692399978638
+}
