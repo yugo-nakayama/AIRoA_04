@@ -7,7 +7,7 @@ Franka Panda + 固定上方 RGB-D カメラで `circle / square / triangle` を�
 - **実装済み**: 多候補把持（XY / yaw / 指幅 / 力）、経験学習型成功予測、GRASP / REOBSERVE / HOLD 判断、幾何サポートによる未知検出、アーム退避後の再撮影、指幅+table-clear+運搬保持+配置後位置の検証、失敗別復帰、JSONL/CSV/JSON ログ。
 - **実行済み**: 13 unit tests、合成 RGB-D E2E、固定 seed の A/B/C/D 6,400 object 比較、ablation 2,000 object、学習 12,000 candidate rows、64秒のログ再生動画。
 - **実行済み（この環境）**: Genesis qualification `qualified=true`（torch 2.11.0+cu128 / genesis 1.4.5 / RTX 4090）。`genesis_sort_ultra.py --episodes 2` の物理実行とカメラ動画を取得。
-- 実測: 詳細は `out/genesis/summary.json`。再現動画: `out/genesis/PAI_final_demo_repro_04_ultra.mp4`。
+- 実測: 詳細は `out/genesis/summary.json`。再現動画: `out/genesis/PAI_final_demo_repro_04_ultra.mp4`（12 episodes / 約89秒、success_rate 0.75）。
 - パッケージ同梱の `AI_Shape_Sorting_Robot_Arm_Ultra_Benchmark_Replay.mp4` は **制御ベンチマークのログ再生**であり、Genesis映像ではありません。
 - `genesis_sort_ultra.py` には overhead 遮蔽・完了物体再選択ループ対策の実行時修正を反映済み。
 
