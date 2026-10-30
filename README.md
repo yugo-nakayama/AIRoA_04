@@ -1,4 +1,4 @@
-# AI Shape Sorting Robot Arm - Ultra Adaptive Edition
+# 失敗経験とマルチ候補学習に基づく適応型AIロボット把持・仕分けシステム
 
 Franka Panda + 固定上方 RGB-D カメラで `circle / square / triangle` を仕分ける既存上級編を、**不確実性と失敗経験から把持戦略を改善する適応型システム**へ拡張した実装です。
 
@@ -71,7 +71,7 @@ python genesis3d/qualify_genesis.py --out out/genesis/qualification.json
 python genesis3d/genesis_sort_ultra.py --cpu --episodes 2
 ```
 
-本番runnerは `configs/ultra.json` の `dt=0.01 s`, `substeps=4`, CPU target、seed 37を読み、既存のFranka IK/PDを維持します。モデルと結果の対応は `out/run_registry.json`、全ファイルhashは `out/experiments/manifest.json` を参照してください。
+本番runnerは `configs/ultra.json` の `dt=0.01 s`, `substeps=4`, CPU target、seed 37を読み、既存のFranka IK/PDを維持します。モデルと結果の対応は `out/run_registry.json`、全ファイルhashは `out/experiments/manifest.json` を参照。
 
 ## 主要な実測結果（制御ベンチマーク）
 
@@ -83,5 +83,6 @@ python genesis3d/genesis_sort_ultra.py --cpu --episodes 2
 これらは `run_experiments.py` の確率的接触モデル上の結果であり、Genesis物理成功率ではありません。詳細な区間推定、失敗分類、ablationはPDFとCSVにあります。
 
 ## 提出時の注意
-
-課題要件どおり、Genesis資格試験が通った環境で1-3分の実映像を撮り、ログ再生動画と混同しないタイトルにしてください。氏名・所属・メールアドレス等は成果物に含めていません。
+- Genesis。
+- 1-3分の実映像を撮り、YouTubeで限定公開。
+- 氏名・所属・メールアドレス等は成果物に含めない。
