@@ -5,3 +5,8 @@ __pycache__/
 out/genesis/*_raw.mp4
 out/genesis/genesis_raw.mp4
 *.egg-info/
+.DS_Store
+*.aux
+*.log
+*.out
+*.toc

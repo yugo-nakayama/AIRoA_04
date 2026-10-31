@@ -2,6 +2,10 @@
 
 Franka Panda + 固定上方 RGB-D カメラで `circle / square / triangle` を仕分ける既存上級編を、**不確実性と失敗経験から把持戦略を改善する適応型システム**へ拡張した実装です。
 
+## デモ動画（提出用 YouTube）
+
+- **実機・シミュレーション実行動画**: https://youtu.be/9Ba3pNvG2-Y
+
 ## 重要: 今回の検証境界
 
 - **実装済み**: 多候補把持（XY / yaw / 指幅 / 力）、経験学習型成功予測、GRASP / REOBSERVE / HOLD 判断、幾何サポートによる未知検出、アーム退避後の再撮影、指幅+table-clear+運搬保持+配置後位置の検証、失敗別復帰、JSONL/CSV/JSON ログ。
@@ -84,5 +88,5 @@ python genesis3d/genesis_sort_ultra.py --cpu --episodes 2
 
 ## 提出時の注意
 - Genesis。
-- 1-3分の実映像を撮り、YouTubeで限定公開。
+- 1-3分の実映像を撮り、YouTubeで限定公開: https://youtu.be/9Ba3pNvG2-Y
 - 氏名・所属・メールアドレス等は成果物に含めない。

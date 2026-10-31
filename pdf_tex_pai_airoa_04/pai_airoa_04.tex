@@ -1,0 +1,198 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[a4paper, margin=2.0cm]{geometry}
+\usepackage{fontspec}
+\usepackage[japanese, english, bidi=basic, provide=*]{babel}
+\babelprovide[import, onchar=ids fonts]{japanese}
+\babelfont[japanese]{rm}{Noto Sans CJK JP}
+\babelfont{rm}{Noto Sans}
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+
+\setlist[itemize]{label=-, leftmargin=1.5em, itemsep=2pt, parsep=0pt}
+
+\definecolor{primary}{RGB}{15, 23, 42}
+\definecolor{accent}{RGB}{37, 99, 235}
+\definecolor{subtext}{RGB}{71, 85, 105}
+\definecolor{bglight}{RGB}{248, 250, 252}
+
+\titleformat{\section}{\color{primary}\large\bfseries}{\thesection.}{0.5em}{}[\hrule height 0.5pt]
+\titleformat{\subsection}{\color{accent}\normalfont\bfseries}{\thesubsection}{0.5em}{}
+
+\begin{document}
+
+% --- Header Block ---
+\begin{center}
+    {\fontsize{18pt}{22pt}\selectfont \textbf{\color{primary} ULTRA ADAPTIVE GENESIS SORTER}} \\[4pt]
+    {\large \textbf{不確実性と失敗経験から把持戦略を改善する適応型 AI 仕分けロボット}} \\[4pt]
+    {\small \color{subtext} Physical AI 応用1講座 $|$ 最終課題レポート $|$ 確認日 2026-10-30}
+\end{center}
+
+\vspace{2mm}
+
+\noindent
+\begin{tabularx}{\textwidth}{@{} X X X X @{}}
+\textbf{AI} MLP + grasp success model + OOD &
+\textbf{ROBOT} Franka Panda / IK$\cdot$PD &
+\textbf{REPOSITORY} AIRoA\_04 &
+\textbf{SIMULATOR} Genesis 3D + benchmark \\
+\end{tabularx}
+
+\vspace{2mm}
+\hrule
+\vspace{4mm}
+
+% --- Section 1 ---
+\section{課題の概要・目的}
+固定上方 RGB-D カメラで円・四角・三角を認識し、Franka Panda で対応する容器へ仕分ける。AIRoA\_04 では、AIRoA\_03 の不確実性対応をさらに発展させ、把持候補を失敗経験から選ぶ適応型システムとした。物流・資源分別など、未知物体や観測誤差が混在する反復作業を想定する。
+
+\vspace{3mm}
+
+% --- Section 2 ---
+\section{システム構成と AI の活用}
+
+\textbf{処理パイプライン:} \\
+01 RGB-D 知覚 (高さ差分割 / 3D逆投影) $\rightarrow$
+02 AI 認識 (MLP + TTA / OOD 判定) $\rightarrow$
+03 行動判断 (GRASP / REOBSERVE / HOLD) $\rightarrow$
+04 適応把持 (8候補 + 成功予測) $\rightarrow$
+05 実行・検証 (IK/PD / 二重確認 / 記録)
+
+\vspace{2mm}
+\noindent
+\textit{AI の担当範囲:} 形状分類、未知度推定、把持成功確率の予測と候補順位付け。逆運動学、PD 制御、仕分け先対応、再試行上限は解析計算・ルールベースであり、ロボット全体を end-to-end 学習した構成ではない。
+
+\vspace{2mm}
+\begin{table}[h!]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{} l X X @{}}
+\toprule
+\textbf{段階} & \textbf{主な処理} & \textbf{AI / 非AI} \\
+\midrule
+知覚・認識 & RGB-D 分割、円・四角・三角の分類、TTA & MLP 推論 + 前処理 \\
+未知判定 & クラス別幾何分布、Mahalanobis 距離、損傷ルール & AI 出力 + 統計モデル \\
+候補選択 & XY / yaw / 指幅 / 力の 8 候補を成功確率で順位付け & HistGradientBoosting \\
+計画・制御 & 仕分け先、IK、PD、把持・搬送・投入 & 解析計算・ルール \\
+検証・回復 & 指幅 + table-clear、保持、bin 位置、失敗別再試行 & ルール + 画像検証 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\vspace{1mm}
+
+% --- Section 3 ---
+\section{工夫した点と評価基準との対応}
+\begin{itemize}
+    \item \textbf{創造性}: 失敗経験から把持候補を学習し、単一ルールから適応型選択へ拡張。
+    \item \textbf{実用性}: 未知物体を無理につかまず保留し、誤仕分けより安全側判断を優先。
+    \item \textbf{技術力}: 未知検出、再観測、二重検証、失敗別回復、A/B/C/D ablation を統合。
+    \item \textbf{表現力}: object-level CSV、JSONL、集計、動画、hash で結果を追跡可能にした。
+\end{itemize}
+
+\vspace{3mm}
+
+% --- Section 4 ---
+\section{結果と確認範囲}
+
+\noindent
+\begin{tabularx}{\textwidth}{@{} X X @{}}
+\textbf{CONFIRMED (手元で再確認できた結果)} & \textbf{README ONLY (最新公開 README の記録 / 独立未検証)} \\
+\hline
+\begin{itemize}
+    \item pytest 13/13 件を再実行し、全件 pass。
+    \item 合成 RGB-D E2E は 3 形状を検出し pass=true。
+    \item CSV 6,400 件 + ablation 2,000 件を再集計。
+    \item ログ再生動画は H.264、64 秒、1280$\times$720。
+\end{itemize}
+&
+\begin{itemize}
+    \item Genesis 資格試験 qualified=true (torch 2.11.0+cu128 / Genesis 1.4.5 / RTX 4090)。
+    \item Genesis 12 エピソード、約 89 秒、success\_rate 0.75。
+    \item 現行 summary.json と実映像の内容照合は未実施。
+    \item 旧配布版は torch 欠如で qualification=false だった。
+\end{itemize}
+\\
+\end{tabularx}
+
+\vspace{2mm}
+\noindent
+\textbf{制御ベンチマーク再集計 (固定 seed 37):}
+\begin{table}[h!]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{} c X c c c @{}}
+\toprule
+\textbf{構成} & \textbf{機能} & \textbf{既知 correct-bin} & \textbf{既知 初回把持} & \textbf{未知誤受け入れ} \\
+\midrule
+A & ルール候補 & 88.8\% & 53.8\% & 100.0\% \\
+B & 学習候補 & 90.0\% & 61.8\% & 100.0\% \\
+C & B + 再観測 & 90.5\% & 62.1\% & 100.0\% \\
+D & C + 未知保留 & 90.0\% & 61.9\% & 5.3\% \\
+\bottomrule
+\end{tabularx}
+\end{table}
+\textit{注: 既知集計は各構成 1,487 物体。未知誤受け入れは open-set 200 物体/構成 (未知 113、既知 87) で別集計。D は既知 correct-bin 97.7\% を維持し、未知誤受け入れを 5.3\% へ低下。数値は確率的接触モデルであり Genesis 物理結果ではない。}
+
+\vspace{3mm}
+
+% --- Section 5 ---
+\section{考察・制約・今後の課題}
+\textbf{考察・制約:}
+\begin{itemize}
+    \item 学習候補選択で初回把持は A 比約 +8 pt。ただし hold-out ROC-AUC 0.597 で、予測器単体の識別力は限定的。
+    \item 主要数値は確率的接触モデルのベンチマークであり、Genesis 物理成功率や実機成功率ではない。
+    \item D は未知誤受け入れを 5.3\% へ低下させる一方、既知分布外の正常物体を保留する可能性がある。
+\end{itemize}
+
+\noindent
+\textbf{今後の課題:}
+\begin{itemize}
+    \item 最新 Genesis summary・実映像を独立照合し、旧配布版との差分と実行環境を固定する。
+    \item 複数 seed で A/B/C/D を Genesis 再評価し、把持・滑り・投入の段階別成功率と信頼区間を示す。
+    \item 実機でカメラ較正、摩擦・把持力、安全停止、sim-to-real 差を評価する。
+\end{itemize}
+
+\vspace{3mm}
+
+% --- Section 6 ---
+\section{コード構成と実行方法}
+
+\begin{table}[h!]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{} l X @{}}
+\toprule
+\textbf{場所} & \textbf{役割} \\
+\midrule
+\texttt{shape\_ai.py} / \texttt{perception.py} & MLP+TTA、RGB-D 分割、3D 逆投影 \\
+\texttt{novelty.py} / \texttt{decision.py} & 未知判定、GRASP / REOBSERVE / HOLD \\
+\texttt{adaptive\_grasp.py} & 8 候補生成、成功予測、経験 JSONL \\
+\texttt{supervisor.py} & 二重検証、失敗別リカバリ \\
+\texttt{genesis3d/genesis\_sort\_ultra.py} & Franka 統合 runner、IK/PD、動画・ログ \\
+\texttt{run\_experiments.py} / \texttt{telemetry.py} & A/B/C/D ablation、CSV/JSON 集計 \\
+\texttt{configs/ultra.json} / \texttt{tests/} & 閾値 物理・評価条件、13 件の単体試験 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\vspace{1mm}
+\noindent
+\textbf{実行コマンド:}
+\begin{verbatim}
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+python -m pytest -q && python test_offline.py --out out/offline_ultra
+python run_experiments.py --seed 37 --training-rows 12000 --objects-per-condition 200
+
+pip install -r requirements-genesis.txt
+python genesis3d/qualify_genesis.py --out out/genesis/qualification.json
+python genesis3d/genesis_sort_ultra.py --cpu --episodes 2
+\end{verbatim}
+
+
+\end{document}
